@@ -6,18 +6,18 @@ import React, { useEffect } from 'react';
 export default function Modal({ img, onClose }) {
   //  componentDidMount
   //  componentWillUnmount
-  useEffect(()=>{
+  useEffect(() => {
     console.log('set handleKeyDown');
+    //  handleKeyDown
+    const handleKeyDown = evt => {
+      if (evt.code === 'Escape') onClose();
+    };
     window.addEventListener('keydown', handleKeyDown);
-    return ()=>{
+    return () => {
       console.log('remove handleKeyDown ');
-      window.removeEventListener('keydown', handleKeyDown)}
-  },[]);
-
-  //  handleKeyDown
-  const handleKeyDown = evt => {
-    if (evt.code === 'Escape') onClose();
-  };
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
   //  handleClickBackdrop
   const handleClickBackdrop = evt => {
