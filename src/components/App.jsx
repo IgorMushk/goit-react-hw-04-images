@@ -20,7 +20,7 @@ export function App() {
 
   // componentDidUpdate
   useEffect(() => {
-    if(!query) return;
+    if (!query) return;
     setLoading(true);
     setShowButton(false);
     fetchImages(query, page, 12)
@@ -38,7 +38,7 @@ export function App() {
         setTotalPage(Math.ceil(data.totalHits / 12));
         setHits([...hits, ...data.hits]);
         setLoading(false);
-        setShowButton(true)
+        setShowButton(true);
 
         if (data.hits.length === data.totalHits) {
           // 'zaz'
@@ -46,6 +46,12 @@ export function App() {
           toast.info(
             "We're sorry, but you've reached the end of search results."
           );
+        }
+        if (data.hits.length < 12) {
+          toast.info('Sorry, but this is the last page.');
+          setShowButton(false);
+        } else {
+          setShowButton(true);
         }
       })
       .catch(err => console.log(err));
@@ -56,11 +62,11 @@ export function App() {
     setQuery(query);
     setPage(1);
     setHits([]);
-  }
+  };
 
   const loadMore = () => {
-    setPage((prevPage)=> prevPage+1)
-  }
+    setPage(prevPage => prevPage + 1);
+  };
 
   return (
     <div className={css.App}>
