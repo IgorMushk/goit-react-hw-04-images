@@ -76,7 +76,7 @@ export function App() {
       <ImageGallery data={hits} />
       {loading && <Loader />}
       {showButton && <Button loadMore={loadMore} currentPage={{ page, totalPage }}/>}
-      <ToastContainer autoClose={1500} />
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }
