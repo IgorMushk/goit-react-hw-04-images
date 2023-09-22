@@ -17,6 +17,8 @@ export default function Searchbar({ onSubmit }) {
       return toast.error('Enter a search string');
     }
     onSubmit(inputeValue);
+    // Important. We need to make sure that the field is not cleared when handleSubmit!
+    setInputeValue('');
   };
 
   return (
