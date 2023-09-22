@@ -19,7 +19,6 @@ export function App() {
 
   //const prevQueryRef = useRef();
 
-  // componentDidUpdate
   useEffect(() => {
     if (!query) return;
     setLoading(true);
@@ -44,7 +43,7 @@ export function App() {
         setShowButton(true);
 
         if (data.hits.length === data.totalHits) {
-          // 'zaz'
+          // 'zaz,q'
           setShowButton(false);
           toast.info(
             "We're sorry, but you've reached the end of search results."
@@ -60,7 +59,6 @@ export function App() {
       .catch(err => console.log(err));
   }, [query, page]);
 
-  // onSubmit = query => {
   const onSubmit = query => {
     setQuery(query);
     setPage(1);
