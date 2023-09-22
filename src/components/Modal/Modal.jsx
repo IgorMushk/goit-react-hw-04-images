@@ -1,4 +1,3 @@
-//import React, { Component } from 'react';
 import React, { useEffect } from 'react';
 import css from './Modal.module.css';
 
