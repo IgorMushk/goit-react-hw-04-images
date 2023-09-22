@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+//import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './App.module.css';
@@ -32,11 +33,12 @@ export function App() {
           );
         }
         if (page === 1) {
+          //console.log('-1-')
           toast.success(`Hooray! We found ${data.totalHits} images.`);
         }
-
+        
         setTotalPage(Math.ceil(data.totalHits / 12));
-        setHits([...hits, ...data.hits]);
+        setHits(prevHits => (page === 1 ? data.hits : [...prevHits, ...data.hits] ));
         setLoading(false);
         setShowButton(true);
 
@@ -73,7 +75,7 @@ export function App() {
       <Searchbar onSubmit={onSubmit} />
       <ImageGallery data={hits} />
       {loading && <Loader />}
-      {showButton && <Button loadMore={loadMore} />}
+      {showButton && <Button loadMore={loadMore} currentPage={{ page, totalPage }}/>}
       <ToastContainer autoClose={1500} />
     </div>
   );
